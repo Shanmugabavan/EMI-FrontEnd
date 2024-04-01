@@ -17,6 +17,7 @@ import {employeesReducer} from './employee/_store/reducers/employeesReducer';
 import { EmployeeAddComponent } from './employee/employee-add/employee-add.component';
 import {employeeReducer} from './employee/_store/reducers/employeeReducer';
 import {EmployeeEffects} from './employee/_store/effects/employeeEffects';
+import { EditButtonComponent } from './employee/employee-edit/edit-button/edit-button.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {EmployeeEffects} from './employee/_store/effects/employeeEffects';
     EmployeeComponent,
     EmployeeEditComponent,
     HeaderComponent,
-    EmployeeAddComponent
+    EmployeeAddComponent,
+    EditButtonComponent
   ],
   imports: [
     BrowserModule,

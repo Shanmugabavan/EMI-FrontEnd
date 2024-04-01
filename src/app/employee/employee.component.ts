@@ -8,6 +8,8 @@ import {EmailValidator} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import {selectEmployees, selectError, selectLoading} from './_store/selectors/employeesSelectors';
 import {loadEmployees} from './_store/actions/employeesActions';
+import {EditButtonComponent} from './employee-edit/edit-button/edit-button.component';
+import {editEmployee} from './_store/actions/employeeActions';
 
 @Component({
   selector: 'app-employee',
@@ -33,7 +35,17 @@ export class EmployeeComponent implements OnInit, OnDestroy {
       {field: 'id'},
       {field: 'name', editable: true},
       {field: 'email', editable: true},
-      {field: 'isCurrentlyEmployed', editable: true}
+      {field: 'isCurrentlyEmployed', editable: true},
+      { // Add a new column for the Update button
+        headerName: 'Edit',
+        cellRenderer: EditButtonComponent, // Use the custom cell renderer component
+        editable: false,
+        maxWidth: 100,
+        suppressMenu: true,
+        cellRendererParams: {
+          onClick: this.onEditButtonClick.bind(this)
+        }
+      }
     ];
     this.employees = this.employeeService.getEmployees();
     this.idChangeSub = this.employeeService.employeesChanged
@@ -54,5 +66,12 @@ export class EmployeeComponent implements OnInit, OnDestroy {
 
   onEditItem(index: number) {
     this.employeeService.startedEditing.next(index);
+  }
+
+  onEditButtonClick(params: any) {
+    const rowData: Employee = params.data;
+    console.log(rowData);
+    console.log('Edit button clicked for ID:', rowData.id);
+    this.store.dispatch(editEmployee({id: rowData.id, employee: rowData}));
   }
 }

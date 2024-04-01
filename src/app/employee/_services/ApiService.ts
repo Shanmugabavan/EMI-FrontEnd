@@ -19,4 +19,8 @@ export class ApiService {
   addEmployee(employee: Employee): Observable<any>{
     return this.http.post<Employee>(`${this.apiUrl}/Employee`, employee);
   }
+
+  editEmployee(id: string, employee: Employee): Observable<any> {
+    return this.http.put<Employee>(`${this.apiUrl}/Employee/update/${id}`, employee);
+  }
 }
