@@ -21,4 +21,16 @@ export class EmployeeEffects{
       )
     )
   );
+
+    editEmployee$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(employeeActions.editEmployee),
+            switchMap((action) =>
+                this.apiService.editEmployee(action.id, action.employee).pipe(
+                    map((success) => employeeActions.editEmployeeSuccess({ success })),
+                    catchError((error) => of(employeeActions.editEmployeeFail({ error })))
+                )
+            )
+        )
+    );
 }
