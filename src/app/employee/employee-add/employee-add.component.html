@@ -1,4 +1,4 @@
-<form [formGroup] = "employeeForm" (ngSubmit)="onSubmit()">
+<form [formGroup] = "employeeForm" (ngSubmit)="onSubmit()" style="width: 900px;">
   <div class="form-group">
     <label>Id</label>
     <input
@@ -29,16 +29,18 @@
       formControlName="email"
     >
   </div>
-  <div class="form-group">
-    <label>Is Currently Employed?</label>
-    <input
-      type="radio"
-      class="form-control"
-      id="active"
-      placeholder="active"
-      formControlName="active"
-      [value]="true"
-    >
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="form-check">
+        <label class="form-check-label" for="active">Is currently employed?  </label>
+        <input
+            type="checkbox"
+            class="form-check-input"
+            id="active"
+            placeholder="active"
+            formControlName="active"
+            [value]="true"
+        >
+    </div>
+    <div style="text-align: center">
+        <button type="submit" class="btn btn-primary">Add</button>
+    </div>
 </form>
