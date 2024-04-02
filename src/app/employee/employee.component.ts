@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Employee} from '../_shared/_models/Employee';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {EmployeeService} from './_services/employee.service';
 import {AgGridAngular} from 'ag-grid-angular';
 import {ColDef} from 'ag-grid-community';
@@ -37,7 +37,7 @@ export class EmployeeComponent implements OnInit, OnDestroy {
       {field: 'email', editable: true},
       {field: 'isCurrentlyEmployed', editable: true},
       { // Add a new column for the Update button
-        headerName: 'Edit',
+        headerName: 'Update',
         cellRenderer: EditButtonComponent, // Use the custom cell renderer component
         editable: false,
         maxWidth: 100,
